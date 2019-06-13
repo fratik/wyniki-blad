@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <style>
+      body {
+        text-align: center;
+      }
+      * {
+        font-family: Comic Sans MS, Times New Roman; /* Comic Sans zawsze spoko */
+      }
+      form input, form select, form button, form textarea {
+        padding: 10px;
+        border: 1px solid black;
+        margin-top: 10px;
+        min-width: 400px;
+      }
+      form textarea {
+        height: 10rem;
+      }
+   </style>
+  </head>
+  <body>
+    <h2>Generator błędów wyniki.edu.pl</h2><p><a href="https://github.com/fratik/wyniki-blad" target="_blank">Github</a></p>
+    <form onsubmit="przekierowanko(...arguments)" id="jedynarzeczcotumaid">
+      <textarea placeholder="Nagłówek" name="heading"></textarea><br>
+      <textarea placeholder="Tekst" name="paragraph"></textarea><br>
+      <input type="submit" value="Przekieruj"><br>
+    </form>
+    <script>
+      function escape(tekst) {
+        return tekst.replace(/\?/g, "%3F").replace(/&/g, "%26").replace(/ /g, "%20"); // reszta znaków chyba nie musi być escape'owana
+      }
+
+      function przekierowanko(e) {
+        e.preventDefault();
+        var form = document.getElementById("jedynarzeczcotumaid");
+        console.log("wyniki.edu.pl/wystapil-problem?heading=" + escape(form.elements[0].value) + "&paragraph=" + escape(form.elements[1].value));
+        window.location.href = "https://wyniki.edu.pl/wystapil-problem?heading=" + escape(form.elements[0].value) + "&paragraph=" + escape(form.elements[1].value);
+      }
+    </script>
+  </body>
+</html>
